@@ -1,12 +1,28 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classes from './Form.module.css';
 
-function Form({ input, setInput, todos, setTodos }) {
+function Form({ input, setInput, todos, setTodos, editTodo, setEditTodo }) {
 
     // use states for checking input
     const [inputValidCheck, setInputValidCheck] = useState(true);
+
+    function updateTodo(title, id, completed){
+        const newTodo = todos.map((todo) => 
+            todo.id === id ? {title, id, completed} : todo
+        );
+        setTodos(newTodo);
+        setEditTodo("");
+    };
+
+    useEffect(() => {
+        if(editTodo){
+            setInput(editTodo.title);
+        } else{
+            setInput("");
+        }
+    }, [setInput, editTodo]);
 
     function userInputHandler(event) {
         setInput(event.target.value);
@@ -14,8 +30,8 @@ function Form({ input, setInput, todos, setTodos }) {
 
     function submitToDoFormHandler(event) {
         event.preventDefault();
-
-        const inputValidCheck = input.length > 0 && input.length <= 40;
+        if(!editTodo){
+            const inputValidCheck = input.length > 0 && input.length <= 40;
 
         setInputValidCheck(inputValidCheck);
         if (!inputValidCheck) {
@@ -32,6 +48,11 @@ function Form({ input, setInput, todos, setTodos }) {
 
         // empty text box
         setInput("");
+        }
+        else {
+            updateTodo(input, editTodo.id, editTodo.completed)
+        }
+        
     };
 
     return (
@@ -47,7 +68,12 @@ function Form({ input, setInput, todos, setTodos }) {
                         : classes.input}
                 ></input>
 
-                <button className="add-button" type="submit">ADD</button>
+                <button className="add-button" type="submit">
+                    {editTodo ? "Save" : "Add"}
+                </button>
+                <button className="cancel-button" type="submit">
+                    {!editTodo ? "" : "Cancel"} 
+                </button>
             </form>
         </div>
     );

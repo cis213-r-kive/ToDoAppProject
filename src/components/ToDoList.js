@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ToDoList( { todos, setTodos } ) {
+function ToDoList( { todos, setTodos, setEditTodo } ) {
     console.log(todos);
 
     function deleteHandler({id}){
@@ -15,8 +15,13 @@ function ToDoList( { todos, setTodos } ) {
                 }
                 return item;
             })
-        )
-    }
+        );
+    };
+
+    function editHandler({id}){
+        const findTodo = todos.find((todo) => todo.id === id);
+        setEditTodo(findTodo);
+    };
 
     return (
         <div>
@@ -39,6 +44,7 @@ function ToDoList( { todos, setTodos } ) {
 
                     <button 
                     className="edit-button"
+                    onClick={() => editHandler(todo)}
                     >EDIT</button>
                 </li>
             ))}

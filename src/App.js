@@ -18,6 +18,7 @@ function App() {
   ]
 
   const [todos, setTodos] = useState(INITIAL_TODO);
+  const [editTodo, setEditTodo] = useState(null);
 
   return (
     <div className="App">
@@ -30,12 +31,15 @@ function App() {
           setInput={setInput}
           todos={todos}
           setTodos={setTodos}
+          editTodo={editTodo}
+          setEditTodo={setEditTodo}
         />
       </div>
       <div className="list-container">
         <ToDoList
           todos={todos}
           setTodos={setTodos}
+          setEditTodo={setEditTodo}
         />
       </div>
     </div>
