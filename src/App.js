@@ -25,26 +25,28 @@ function App() {
       <header className="App-header">
         <Header />
       </header>
-      <div className="form-container">
-        <Form
-          input={input}
-          setInput={setInput}
-          todos={todos}
-          setTodos={setTodos}
-          editTodo={editTodo}
-          setEditTodo={setEditTodo}
-        />
+      <div className="main-container">
+        <div className="form-container">
+          <Form
+            input={input}
+            setInput={setInput}
+            todos={todos}
+            setTodos={setTodos}
+            editTodo={editTodo}
+            setEditTodo={setEditTodo}
+          />
+        </div>
+        <div className="list-container">
+          <ToDoList
+            todos={todos}
+            setTodos={setTodos}
+            setEditTodo={setEditTodo}
+          />
+        </div>
       </div>
-      <div className="list-container">
-        <ToDoList
-          todos={todos}
-          setTodos={setTodos}
-          setEditTodo={setEditTodo}
-        />
-      </div>
+
     </div>
   );
 }
 
 export default App;
-     

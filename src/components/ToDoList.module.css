@@ -1,0 +1,22 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.checked {
+color: black;
+text-decoration: line-through;
+border: none;
+font-size: 1em;
+}
+
+.input {
+    border: none;
+    font-size: 1em;
+    background-color: none;
+}
+
+.ul {
+    list-style-type: none;
+}
